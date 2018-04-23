@@ -66,3 +66,4 @@ allData <- rbind(MultiData,LogisticData,LogisticAll,RMData,KNNData,SVMData,DTDat
 
 p<- ggplot(allData) + geom_boxplot(aes(factor(method),value),na.rm = TRUE)
 p + facet_grid(projectname ~ evaluate) #以vs和am为分类变量
+#previous_theme <- theme_set(theme_bw())

@@ -1,7 +1,7 @@
 clear;
 clc;
 close;
-%warning off;
+warning off;
 addpath('./MALSAR/functions/dirty/'); % load function
 addpath('./MALSAR/c_files/prf_lbm/'); % load projection c libraries. 
 addpath('./MALSAR/utils/');           % load utilities

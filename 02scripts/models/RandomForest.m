@@ -12,7 +12,8 @@ function performance_RM = RandomForest(Xtr,...
         
         tree_RM = TreeBagger(100,X_train,Y_train,'Method','classification'); 
 
-        Y_result  = predict(tree_RM,X_test);
+        Y_result = predict(tree_RM,X_test);
+        Y_result = str2num(char(Y_result));
         EVAL = MyEvaluation(Y_test,Y_result);
         performance_RM = [performance_RM EVAL];  
     end

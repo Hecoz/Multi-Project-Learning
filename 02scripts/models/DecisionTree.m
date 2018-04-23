@@ -11,7 +11,7 @@ function performance_DT = DecisionTree(Xtr,...
         X_test  = cell2mat(Xte(i));
         Y_test  = cell2mat(Yte(i));
         
-        model_DT = fitctree(X_train, Y_train,'OptimizeHyperparameters','auto');
+        model_DT = fitctree(X_train, Y_train);
         Y_result = predict(model_DT,X_test);
         
         EVAL = MyEvaluation(Y_test,Y_result);

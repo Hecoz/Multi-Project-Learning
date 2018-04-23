@@ -75,8 +75,9 @@ for p = 1:length(projects)
                 resultFile = fopen(strcat("./03results/SVM_",datasetName,".txt"),"w+");
             case{6}
                 resultFile = fopen(strcat("./03results/DecisionTree_",datasetName,".txt"),"w+");
+            otherwise
+                disp("IMPOSSIBLE");
         end
-
         %output impormant parameters
         fprintf(resultFile,"Dataset Name:%s\n",datasetName);
         fprintf(resultFile,"Time: %s\n",datestr(now,0));
@@ -102,6 +103,8 @@ for p = 1:length(projects)
                 SaveResult(tenXtenFoldResults(i,:),['./03results/SVM_',datasetName,'.csv'],outTenFold,out_cv_fold);
             case{6}
                 SaveResult(tenXtenFoldResults(i,:),['./03results/DecisionTree_',datasetName,'.csv'],outTenFold,out_cv_fold);
+            otherwise
+                disp("IMPOSSIBLE");
         end
     end
 end

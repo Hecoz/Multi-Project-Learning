@@ -27,11 +27,11 @@ for p = 1:length(projects)
     projectdata = [];
     for modelitem = 1:modelnum
         result = [];
-        for i = 1:20:datalen
-            tmp(1) = mean(Fmeasure(i:(i+19),modelitem),'omitnan');
-            tmp(2) = std(Fmeasure(i:(i+19),modelitem),0,'omitnan');
-            tmp(3) = mean(AUCdata(i:(i+19),modelitem),'omitnan');
-            tmp(4) = std(AUCdata(i:(i+19),modelitem),0,'omitnan');
+        for i = 1:50:datalen
+            tmp(1) = mean(Fmeasure(i:(i+49),modelitem),'omitnan');
+            tmp(2) = std(Fmeasure(i:(i+49),modelitem),0,'omitnan');
+            tmp(3) = mean(AUCdata(i:(i+49),modelitem),'omitnan');
+            tmp(4) = std(AUCdata(i:(i+49),modelitem),0,'omitnan');
             result = [result;tmp];
         end
         projectdata = [projectdata result];
@@ -39,4 +39,4 @@ for p = 1:length(projects)
     projectsdata = [projectsdata;projectdata];
 end
 %save result
-csvwrite('resultdata.csv',projectsdata);
+csvwrite('resultdata_correct_n.csv',projectsdata);

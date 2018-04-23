@@ -26,13 +26,13 @@ DTData <- read.csv(dicisiontreepath,header = F)
 colnames(DTData) <- c("Accuracy","Precision","Recall","F1","AUC")
 
 dataLen <- nrow(MultiData)
-projectNum <- dataLen/20
+projectNum <- dataLen/50
 evaluateNum <- 5
 projectName <- NULL
 proName <- c("ant-1.3","arc","camel-1.0","poi-1.5","redaktor","skarbonka","tomcat","velocity","xalan-2.4","xerces-1.2")
 for( i in seq(evaluateNum)){
   for(j in seq(projectNum)){
-    projectName <- cbind(projectName,t(rep(proName[j],20)))
+    projectName <- cbind(projectName,t(rep(proName[j],50)))
   }
 }
 projectName <- t(projectName)

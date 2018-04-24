@@ -19,7 +19,7 @@ for p = 1:length(projects)
     datasetName=project;
     %experiments options
     outTenFold         = 10;                    %independent execution numbers
-    out_cv_fold        = 5;                     %nested cross validation numbers
+    out_cv_fold        = 2;                     %nested cross validation numbers
 
     tenXtenFoldResults = cell(1,outTenFold);    %最外层带有随机因子的循环
 

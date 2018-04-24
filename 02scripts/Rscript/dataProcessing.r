@@ -28,10 +28,17 @@ for (i in seq(length(projects))) {
     tmp3 <- wilcox.test(AUCdata[k:(k+19),1],AUCdata[k:(k+19),2],exact=FALSE,conf.level = 0.95)[3]$p.value
     tmp4 <- cliff.delta(AUCdata[k:(k+19),1],AUCdata[k:(k+19),2],conf.level = 0.95)[1]$estimate
     
-    tmp5 <- wilcox.test(Fmeasure[k:(k+19),1],Fmeasure[k:(k+19),3],exact=FALSE,conf.level = 0.95)[3]$p.value
-    tmp6 <- cliff.delta(Fmeasure[k:(k+19),1],Fmeasure[k:(k+19),3],conf.level = 0.95)[1]$estimate
-    tmp7 <- wilcox.test(AUCdata[k:(k+19),1],AUCdata[k:(k+19),3],exact=FALSE,conf.level = 0.95)[3]$p.value
-    tmp8 <- cliff.delta(AUCdata[k:(k+19),1],AUCdata[k:(k+19),3],conf.level = 0.95)[1]$estimate
+    if(k == 101){
+      tmp5 = NaN
+      tmp6 = NaN
+      tmp7 = NaN
+      tmp8 = NaN
+    }else{
+      tmp5 <- wilcox.test(Fmeasure[k:(k+19),1],Fmeasure[k:(k+19),3],exact=FALSE,conf.level = 0.95)[3]$p.value
+      tmp6 <- cliff.delta(Fmeasure[k:(k+19),1],Fmeasure[k:(k+19),3],conf.level = 0.95)[1]$estimate
+      tmp7 <- wilcox.test(AUCdata[k:(k+19),1],AUCdata[k:(k+19),3],exact=FALSE,conf.level = 0.95)[3]$p.value
+      tmp8 <- cliff.delta(AUCdata[k:(k+19),1],AUCdata[k:(k+19),3],conf.level = 0.95)[1]$estimate
+    }
     
     tmp <- cbind(tmp1,tmp2,tmp3,tmp4,tmp5,tmp6,tmp7,tmp8)
     result <- rbind(result,tmp)
@@ -39,7 +46,7 @@ for (i in seq(length(projects))) {
   
   projectsdata <- rbind(projectsdata,result)
 }
-write.csv(projectsdata,"fenxi2.csv")
+write.csv(projectsdata,"pvalue-delta-2.csv")
 
 
 

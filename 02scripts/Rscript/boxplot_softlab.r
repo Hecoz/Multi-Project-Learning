@@ -26,13 +26,13 @@ DTData <- read.csv(dicisiontreepath,header = F)
 colnames(DTData) <- c("Accuracy","Precision","Recall","F1","AUC")
 
 dataLen <- nrow(MultiData)
-projectNum <- dataLen/50
+projectNum <- dataLen/20
 evaluateNum <- 5
 projectName <- NULL
 proName <- c("ar1","ar3","ar4","ar5","ar6")
 for( i in seq(evaluateNum)){
   for(j in seq(projectNum)){
-    projectName <- cbind(projectName,t(rep(proName[j],50)))
+    projectName <- cbind(projectName,t(rep(proName[j],20)))
   }
 }
 projectName <- t(projectName)
@@ -63,6 +63,10 @@ colnames(DTData) <- c("evaluate","value","projectname","method")
 
 allData <- rbind(MultiData,LogisticData,LogisticAll,RMData,KNNData,SVMData,DTData)
 
+fun_mean <- function(x){
+  return(data.frame(y=mean(x),label=round(mean(x,na.rm=T),3)))
+}
 
-p<- ggplot(allData) + geom_boxplot(aes(factor(method),value),na.rm = TRUE)
+p<- ggplot(allData,aes(factor(method),value),na.rm = TRUE) + geom_boxplot(na.rm = TRUE) + stat_summary(fun.y=mean, geom="point", shape=20, size=1, color="red", fill="red") + stat_summary(fun.data = fun_mean, geom="text",color="red",size=2, vjust=-0.7)
 p + facet_grid(projectname ~ evaluate) #以vs和am为分类变量
+#previous_theme <- theme_set(theme_bw())

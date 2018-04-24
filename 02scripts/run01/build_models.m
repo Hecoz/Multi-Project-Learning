@@ -47,8 +47,8 @@ function allPerformance = build_models(SDP_DATA,...
             ct_idx = i : out_cv_fold : length(ct);
             cs_idx = i : out_cv_fold : length(cs);
 
-            tr_idx = [ct(ct_idx); cs(cs_idx)];
-            te_idx = setdiff(1:task_sample_size, tr_idx);
+            te_idx = [ct(ct_idx); cs(cs_idx)];
+            tr_idx = setdiff(1:task_sample_size, te_idx);
 
             Xtr{t} = X{t}(tr_idx, :);
             Ytr{t} = Y{t}(tr_idx, :);

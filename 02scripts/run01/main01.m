@@ -34,7 +34,7 @@ for p = 1:length(projects)
     obj_func_str       = 'Logistic_Dirty';      %model train function
     eval_func_str      = 'eval_MTL_auc';        %object function
     outTenFold         = 10;                    %independent execution numbers
-    out_cv_fold        = 5;                     %nested cross validation numbers
+    out_cv_fold        = 2;                     %nested cross validation numbers
     optional_cv_fold   = 3;
     tenXtenFoldResults = cell(1,outTenFold);    %最外层带有随机因子的循环
 

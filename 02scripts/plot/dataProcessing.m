@@ -6,6 +6,8 @@ addpath('./03results/'); % load function
 projects = {'AEEEM.mat','MORPH.mat','Relink.mat','softlab.mat'};
 
 projectsdata = [];
+steps = 100;
+step = 99;
 for p = 1:length(projects)
     project = projects{p};
 
@@ -27,11 +29,11 @@ for p = 1:length(projects)
     projectdata = [];
     for modelitem = 1:modelnum
         result = [];
-        for i = 1:20:datalen
-            tmp(1) = mean(Fmeasure(i:(i+19),modelitem),'omitnan');
-            tmp(2) = std(Fmeasure(i:(i+19),modelitem),0,'omitnan');
-            tmp(3) = mean(AUCdata(i:(i+19),modelitem),'omitnan');
-            tmp(4) = std(AUCdata(i:(i+19),modelitem),0,'omitnan');
+        for i = 1:steps:datalen
+            tmp(1) = mean(Fmeasure(i:(i+step),modelitem),'omitnan');
+            tmp(2) = std(Fmeasure(i:(i+step),modelitem),0,'omitnan');
+            tmp(3) = mean(AUCdata(i:(i+step),modelitem),'omitnan');
+            tmp(4) = std(AUCdata(i:(i+step),modelitem),0,'omitnan');
             result = [result;tmp];
         end
         projectdata = [projectdata result];
@@ -39,4 +41,4 @@ for p = 1:length(projects)
     projectsdata = [projectsdata;projectdata];
 end
 %save result
-csvwrite('resultdata_2.csv',projectsdata);
+csvwrite('resultdata_10.csv',projectsdata);

@@ -25,14 +25,15 @@ dicisiontreepath <- file.path("..", "..","03results",paste("DecisionTree_",proje
 DTData <- read.csv(dicisiontreepath,header = F)
 colnames(DTData) <- c("Accuracy","Precision","Recall","F1","AUC")
 
+pronum <- 100
 dataLen <- nrow(MultiData)
-projectNum <- dataLen/20
+projectNum <- dataLen/pronum
 evaluateNum <- 5
 projectName <- NULL
 proName <- c("EQ","JDT","LC","ML","PDE")
 for( i in seq(evaluateNum)){
   for(j in seq(projectNum)){
-    projectName <- cbind(projectName,t(rep(proName[j],20)))
+    projectName <- cbind(projectName,t(rep(proName[j],pronum)))
   }
 }
 projectName <- t(projectName)

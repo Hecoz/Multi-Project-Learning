@@ -19,7 +19,7 @@ for p = 1:length(projects)
     datasetName=project;
     %experiments options
     outTenFold         = 10;                    %independent execution numbers
-    out_cv_fold        = 2;                     %nested cross validation numbers
+    out_cv_fold        = 10;                     %nested cross validation numbers
 
     tenXtenFoldResults = cell(1,outTenFold);    %最外层带有随机因子的循环
 
@@ -27,7 +27,7 @@ for p = 1:length(projects)
     %init taskNum.
     taskNum = size(SDP_DATA.X,1);
     datasetName = [datasetName,'_alldatafortrain'];
-
+    tic
     for randomIndex= 1:outTenFold
         fprintf("<<<<<<<<<<<<<<<<<<<<Independent Execution Number %d>>>>>>>>>>>>>>>>>>>\n",randomIndex);
 
@@ -36,6 +36,7 @@ for p = 1:length(projects)
                                             randomIndex);           %index of 10 folds
         tenXtenFoldResults{1,randomIndex} = inner_allPerformance(1,:);
     end
+    toc
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %save result
     resultFile = fopen(strcat("./03results/Logistic_",datasetName,".txt"),"w+");

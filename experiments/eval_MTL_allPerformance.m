@@ -19,6 +19,6 @@ function all_performance = eval_MTL_allPerformance (Y, X, W, C)
         alldata = [prevalue predicted Y{t}];
         alldata = sortrows(alldata,-1);
         EVAL = MyEvaluation(alldata(:,3),alldata(:,2));
-        all_performance = [all_performance EVAL];   
+        all_performance = [all_performance EVAL];
     end
 end

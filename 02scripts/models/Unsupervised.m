@@ -5,7 +5,7 @@ function performance_US = Unsupervised(Xtr,...
                                        p)
     performance_US = [];
     project_num = length(Xtr);
-    threshold_rate = 0.5;
+    threshold_rate = 0.1;
     switch p
         case{1}
             rankitem = 26;
@@ -21,6 +21,7 @@ function performance_US = Unsupervised(Xtr,...
     for i = 1:project_num
         X_train = cell2mat(Xtr(i));
         Y_train = cell2mat(Ytr(i));
+        
         X_test  = cell2mat(Xte(i));
         Y_test  = cell2mat(Yte(i));
         
@@ -29,9 +30,9 @@ function performance_US = Unsupervised(Xtr,...
         Y_test = Y_test(index,:);
         
         [nrows,ncols] = size(Y_test);
-        Y_result = ones(nrows,ncols);
+        Y_result = -ones(nrows,ncols);
         threshold = floor(nrows*threshold_rate);
-        Y_result(1:threshold,:) = -1;
+        Y_result(1:threshold,:) = 1;
         
         EVAL = MyEvaluation(Y_test,Y_result);
         performance_US = [performance_US EVAL];  

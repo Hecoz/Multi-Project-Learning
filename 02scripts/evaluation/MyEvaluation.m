@@ -110,7 +110,7 @@ function [auc, curve] = ROC(actural,predicted,Lp, Ln)
     predicted = predicted(:);
     actural = actural(:);
     L = [predicted actural];
-    L = sortrows(L,1);
+    L = sortrows(L,1);%∞¥predicted…˝–Ú≈≈–Ú
     index = len:-1:1;
     index = index';     %'
     L = L(index,:);
@@ -141,11 +141,3 @@ function [auc, curve] = ROC(actural,predicted,Lp, Ln)
     auc = auc / P / N;
     auc = auc + trapezoid(1, fp_pre/N, 1, tp_pre/P);
 end 
-
-
-% calculat the area of trapezoid
-function area = trapezoid(x1,x2,y1,y2)
-    a = abs(x1-x2);
-    b = abs(y1+y2);
-    area = a * b / 2;
-end

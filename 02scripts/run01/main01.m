@@ -51,17 +51,19 @@ for p = 1:length(projects)
                                             optional_cv_fold,...    %optional_cv_fold 3
                                             obj_func_str,...        %model train function
                                             eval_func_str,...       %object function
-                                            randomIndex);           %index of 10 folds
+                                            randomIndex,...
+                                            p);           %index of 10 folds
         tenXtenFoldResults{1,randomIndex} = inner_allPerformance(1,:);
         tenXtenFoldResults{2,randomIndex} = inner_allPerformance(2,:);
         tenXtenFoldResults{3,randomIndex} = inner_allPerformance(3,:);
         tenXtenFoldResults{4,randomIndex} = inner_allPerformance(4,:);
         tenXtenFoldResults{5,randomIndex} = inner_allPerformance(5,:);
         tenXtenFoldResults{6,randomIndex} = inner_allPerformance(6,:);
+        tenXtenFoldResults{7,randomIndex} = inner_allPerformance(7,:);
     end
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %save result
-    for i = 1:6
+    for i = 1:7
         switch i
             case{1}
                 resultFile = fopen(strcat("./03results/MultiTask_",datasetName,".txt"),"w+");
@@ -75,6 +77,8 @@ for p = 1:length(projects)
                 resultFile = fopen(strcat("./03results/SVM_",datasetName,".txt"),"w+");
             case{6}
                 resultFile = fopen(strcat("./03results/DecisionTree_",datasetName,".txt"),"w+");
+            case{7}
+                resultFile = fopen(strcat("./03results/Unsupervised_",datasetName,".txt"),"w+");
             otherwise
                 disp("IMPOSSIBLE");
         end
@@ -88,7 +92,7 @@ for p = 1:length(projects)
         fclose(resultFile);
     end
     %save_result(resultFile,tenXtenFoldResults,taskNum,outTenFold,out_cv_fold);
-    for i = 1:6
+    for i = 1:7
 
         switch i
             case{1}
@@ -103,6 +107,8 @@ for p = 1:length(projects)
                 SaveResult(tenXtenFoldResults(i,:),['./03results/SVM_',datasetName,'.csv'],outTenFold,out_cv_fold);
             case{6}
                 SaveResult(tenXtenFoldResults(i,:),['./03results/DecisionTree_',datasetName,'.csv'],outTenFold,out_cv_fold);
+            case{7}
+                SaveResult(tenXtenFoldResults(i,:),['./03results/Unsupervised_',datasetName,'.csv'],outTenFold,out_cv_fold);
             otherwise
                 disp("IMPOSSIBLE");
         end

@@ -2,8 +2,8 @@ library("effsize")
 
 projects = c("AEEEM.mat","MORPH.mat","Relink.mat","softlab.mat")
 projectsdata <- NULL
-steps <- 50
-adds <- 49
+steps <- 100
+adds <- 99
 for (i in seq(length(projects))) {
   
   project = projects[i]
@@ -41,7 +41,7 @@ for (i in seq(length(projects))) {
   
   projectsdata <- rbind(projectsdata,result)
 }
-write.csv(projectsdata,"pvalue-delta-5.csv")
+write.csv(projectsdata,"pvalue-delta-new.csv")
 
 
 

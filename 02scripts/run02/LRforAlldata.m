@@ -22,9 +22,13 @@ function performance_LR = LRforAlldata(Xtr,...
         Y_test (Y_test == -1) = 0;
         
         Y_result = glmval(model_LR,X_test,'logit');
+        prevalue = Y_result;
         Y_result(Y_result <  0.5) = 0;
         Y_result(Y_result >= 0.5) = 1;
-        EVAL = MyEvaluation(Y_test,Y_result,1,0);
+        
+        alldata = [prevalue Y_result Y_test];
+        alldata = sortrows(alldata,-1);
+        EVAL = MyEvaluation(alldata(:,3),alldata(:,2),1,0);
         performance_LR = [performance_LR EVAL];  
     end
 end
